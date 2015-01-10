@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 13:02:34 MST Sat Jan 10 2015 by root
-! NVRAM config last updated at 13:02:36 MST Sat Jan 10 2015 by root
+! Last configuration change at 13:34:40 MST Sat Jan 10 2015 by root
+! NVRAM config last updated at 13:34:43 MST Sat Jan 10 2015 by root
 !
 version 12.3
 no service pad
@@ -29,10 +29,10 @@ ip cef
 !
 !
 ip domain name rd.nexusnebula.net
-ip dhcp excluded-address 10.0.100.1 10.0.100.199
+ip dhcp excluded-address 10.0.100.1 10.0.100.29
 !
 ip dhcp pool sitea-dhcp
-   network 10.0.100.0 255.255.255.0
+   network 10.0.100.0 255.255.255.192
    default-router 10.0.100.1 
    dns-server 8.8.8.8 8.8.4.4 
    option 42 ip 10.0.100.1 
