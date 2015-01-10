@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 18:29:41 MST Fri Jan 9 2015 by root
-! NVRAM config last updated at 10:54:06 MST Sat Jan 10 2015 by root
+! Last configuration change at 13:02:34 MST Sat Jan 10 2015 by root
+! NVRAM config last updated at 13:02:36 MST Sat Jan 10 2015 by root
 !
 version 12.3
 no service pad
@@ -112,6 +112,7 @@ ip classless
 !
 !
 !
+tftp-server nvram:startup-config
 !
 !
 !

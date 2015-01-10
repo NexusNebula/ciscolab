@@ -1,7 +1,7 @@
 
 !
-! No configuration change since last restart
-! NVRAM config last updated at 10:52:54 MST Sat Jan 10 2015 by root
+! Last configuration change at 13:03:13 MST Sat Jan 10 2015 by root
+! NVRAM config last updated at 13:03:16 MST Sat Jan 10 2015 by root
 !
 version 12.3
 no service pad
@@ -86,6 +86,7 @@ ip http server
 ip classless
 !
 !
+tftp-server nvram:startup-config
 banner incoming * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
 THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
 USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY

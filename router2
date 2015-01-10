@@ -1,6 +1,7 @@
 
 !
-! No configuration change since last restart
+! Last configuration change at 13:04:51 MST Sat Jan 10 2015 by root
+! NVRAM config last updated at 13:04:53 MST Sat Jan 10 2015 by root
 !
 version 12.3
 no service pad
@@ -95,6 +96,7 @@ ip route 0.0.0.0 0.0.0.0 10.1.101.253 200
 access-list 1 deny   10.255.255.255
 access-list 1 permit any
 !
+tftp-server nvram:startup-config
 !
 !
 !
