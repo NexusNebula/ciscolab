@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 13:02:05 MST Sat Jan 10 2015 by root
-! NVRAM config last updated at 13:02:08 MST Sat Jan 10 2015 by root
+! Last configuration change at 01:54:08 MST Sun Jan 11 2015 by root
+! NVRAM config last updated at 01:54:11 MST Sun Jan 11 2015 by root
 !
 version 12.1
 no service pad
@@ -123,6 +123,7 @@ interface FastEthernet0/24
  switchport access vlan 100
  switchport trunk allowed vlan 100-103
  switchport mode trunk
+ spanning-tree portfast trunk
 !
 interface Vlan1
  no ip address
@@ -162,7 +163,7 @@ line vty 0 4
  transport input ssh
 line vty 5 15
 !
-ntp clock-period 17179811
+ntp clock-period 17179814
 ntp peer 10.0.100.1 prefer
 !
 end
