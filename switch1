@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 02:41:09 MST Sun Jan 11 2015 by root
-! NVRAM config last updated at 02:41:12 MST Sun Jan 11 2015 by root
+! Last configuration change at 03:08:24 MST Sun Jan 11 2015 by root
+! NVRAM config last updated at 03:08:28 MST Sun Jan 11 2015 by root
 !
 version 12.1
 no service pad
@@ -25,36 +25,40 @@ ip domain-name rd.nexusnebula.net
 ip ssh time-out 120
 ip ssh authentication-retries 3
 !
-spanning-tree mode pvst
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+spanning-tree portfast bpdufilter default
 no spanning-tree optimize bpdu transmission
 spanning-tree extend system-id
+spanning-tree uplinkfast
+spanning-tree backbonefast
+spanning-tree vlan 1-1000 priority 28672
 !
 !
 !
 !
 interface Port-channel1
  description lab lacp
- switchport trunk allowed vlan 100-103
  switchport mode trunk
  flowcontrol send off
 !
 interface FastEthernet0/1
  description lab lacp
- switchport trunk allowed vlan 100-103
  switchport mode trunk
  channel-group 1 mode active
  channel-protocol lacp
 !
 interface FastEthernet0/2
  description lab lacp
- switchport trunk allowed vlan 100-103
  switchport mode trunk
  channel-group 1 mode active
  channel-protocol lacp
 !
 interface FastEthernet0/3
  description stp
- switchport trunk allowed vlan 100-103
  switchport mode trunk
 !
 interface FastEthernet0/4
