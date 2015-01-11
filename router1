@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 13:34:40 MST Sat Jan 10 2015 by root
-! NVRAM config last updated at 13:34:43 MST Sat Jan 10 2015 by root
+! Last configuration change at 05:34:19 MST Sun Jan 11 2015 by root
+! NVRAM config last updated at 05:34:22 MST Sun Jan 11 2015 by root
 !
 version 12.3
 no service pad
@@ -58,6 +58,18 @@ username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
 ip ssh rsa keypair-name router1-lab.rd.nexusnebula.net
 ! 
 !
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+crypto isakmp key $^%%cisco address 10.1.101.6
+!
+!
+crypto ipsec transform-set aesset esp-aes esp-sha-hmac 
+!
+crypto map aesmap 10 ipsec-isakmp 
+ ! Incomplete
+ set peer 10.1.101.6
+!
 !
 !
 !
@@ -97,6 +109,7 @@ interface FastEthernet0/1
  ip ospf network point-to-point
  duplex auto
  speed auto
+ crypto map aesmap
 !
 router ospf 1
  log-adjacency-changes
@@ -143,7 +156,7 @@ line vty 0 4
  transport output all
 line vty 5 15
 !
-ntp clock-period 17180803
+ntp clock-period 17180797
 ntp server 10.255.255.255 prefer
 !
 end
