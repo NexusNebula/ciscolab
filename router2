@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 15:06:52 MST Sun Jan 11 2015 by root
-! NVRAM config last updated at 15:06:55 MST Sun Jan 11 2015 by root
+! Last configuration change at 23:37:22 MST Tue Jan 13 2015 by root
+! NVRAM config last updated at 23:37:26 MST Tue Jan 13 2015 by root
 !
 version 12.3
 no service pad
@@ -101,8 +101,8 @@ router ospf 1
  network 10.1.101.252 0.0.0.3 area 0
  default-information originate always
 !
-ip http server
-no ip http secure-server
+no ip http server
+ip http secure-server
 ip classless
 ip route 0.0.0.0 0.0.0.0 10.1.101.253 200
 !
@@ -147,8 +147,9 @@ line vty 0 4
  transport input ssh
  transport output all
 line vty 5 15
+ transport input none
 !
-ntp clock-period 17180665
+ntp clock-period 17180642
 ntp peer 10.255.255.255 prefer
 !
 end

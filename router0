@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 13:03:13 MST Sat Jan 10 2015 by root
-! NVRAM config last updated at 13:03:16 MST Sat Jan 10 2015 by root
+! Last configuration change at 23:37:43 MST Tue Jan 13 2015 by root
+! NVRAM config last updated at 23:37:46 MST Tue Jan 13 2015 by root
 !
 version 12.3
 no service pad
@@ -30,8 +30,24 @@ ip cef
 !
 ip domain name rd.nexusnebula.net
 !
+ip audit po max-events 100
 !
-username root privilege 15 password 7 00071A150754
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username root privilege 15 secret 5 $1$uEap$.wO8YrHQT0echSAToiPg21
+!
+!
+ip ssh rsa keypair-name router0-lab.rd.nexusnebula.net
+! 
 !
 !
 !
@@ -82,11 +98,17 @@ router ospf 1
  network 10.1.101.12 0.0.0.3 area 50
  network 10.255.255.255 0.0.0.0 area 50
 !
-ip http server
+no ip http server
+ip http secure-server
 ip classless
 !
 !
+!
 tftp-server nvram:startup-config
+!
+!
+!
+!
 banner incoming * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
 THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
 USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY
@@ -101,15 +123,22 @@ BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986
 OR OTHER APPLICABLE LAWS. IF NOT AUTHORIZED TO ACCESS THIS
 SYSTEM, DISCONNECT NOW.
 
+banner motd * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
+THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
+USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY
+BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986
+OR OTHER APPLICABLE LAWS. IF NOT AUTHORIZED TO ACCESS THIS
+SYSTEM, DISCONNECT NOW.
+
 !
 line con 0
  password 7 1511021F0725
  logging synchronous
 line aux 0
 line vty 0 4
- password 7 05080F1C2243
  logging synchronous
- transport input telnet
+ transport preferred ssh
+ transport input ssh
  transport output all
 line vty 5 15
 !
