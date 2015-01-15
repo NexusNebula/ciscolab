@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 03:08:24 MST Sun Jan 11 2015 by root
-! NVRAM config last updated at 03:08:28 MST Sun Jan 11 2015 by root
+! Last configuration change at 21:49:02 MST Wed Jan 14 2015 by root
+! NVRAM config last updated at 21:49:25 MST Wed Jan 14 2015 by root
 !
 version 12.1
 no service pad
@@ -144,8 +144,9 @@ line vty 0 4
  logging synchronous
  transport input ssh
 line vty 5 15
+ transport input none
 !
-ntp clock-period 17179923
+ntp clock-period 17179918
 ntp peer 10.0.100.1 prefer
 !
 end
