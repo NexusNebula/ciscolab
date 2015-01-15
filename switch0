@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 03:14:48 MST Sun Jan 11 2015 by root
-! NVRAM config last updated at 03:14:55 MST Sun Jan 11 2015 by root
+! Last configuration change at 22:59:11 MST Wed Jan 14 2015 by root
+! NVRAM config last updated at 22:59:14 MST Wed Jan 14 2015 by root
 !
 version 12.1
 no service pad
@@ -30,11 +30,12 @@ spanning-tree mode rapid-pvst
 spanning-tree loopguard default
 spanning-tree portfast default
 spanning-tree portfast bpduguard default
-spanning-tree portfast bpdufilter default
 no spanning-tree optimize bpdu transmission
 spanning-tree extend system-id
 spanning-tree uplinkfast
 spanning-tree backbonefast
+spanning-tree pathcost method long
+spanning-tree vlan 100-103 hello-time 10
 !
 !
 !
