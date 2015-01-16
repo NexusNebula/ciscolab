@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 23:33:48 MST Tue Jan 13 2015 by root
-! NVRAM config last updated at 23:33:51 MST Tue Jan 13 2015 by root
+! Last configuration change at 21:53:38 MST Thu Jan 15 2015 by root
+! NVRAM config last updated at 21:53:46 MST Thu Jan 15 2015 by root
 !
 version 12.3
 no service pad
@@ -111,6 +111,13 @@ interface FastEthernet0/1
  speed auto
  crypto map aesmap
 !
+router eigrp 1
+ passive-interface FastEthernet0/1
+ network 10.0.100.0 0.0.0.255
+ network 10.1.101.0 0.0.0.3
+ network 10.1.101.8 0.0.0.3
+ no auto-summary
+!
 router ospf 1
  log-adjacency-changes
  area 50 authentication
@@ -164,7 +171,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180775
+ntp clock-period 17180792
 ntp server 10.255.255.255 prefer
 !
 end
