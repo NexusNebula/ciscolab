@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 05:56:51 MST Wed Jan 21 2015 by root
-! NVRAM config last updated at 05:58:05 MST Wed Jan 21 2015 by root
+! Last configuration change at 06:31:00 MST Wed Jan 21 2015 by root
+! NVRAM config last updated at 06:56:05 MST Wed Jan 21 2015 by root
 !
 version 12.3
 no service pad
@@ -96,6 +96,7 @@ interface FastEthernet0/0.103
 !
 interface Serial0/0
  ip address 10.1.101.10 255.255.255.252
+ ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 094F471A1A0A
  ip ospf network point-to-point
@@ -104,6 +105,7 @@ interface Serial0/0
 !
 interface FastEthernet0/1
  ip address 10.1.101.2 255.255.255.252
+ ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 14141B180F0B
  ip ospf network point-to-point
@@ -120,12 +122,15 @@ router eigrp 50
  network 10.0.100.0 0.0.0.255
  network 10.1.101.0 0.0.0.3
  network 10.1.101.8 0.0.0.3
+ distance eigrp 90 100
  no auto-summary
 !
 router ospf 1
  log-adjacency-changes
  area 50 authentication
  area 50 stub
+ area 50 range 10.0.100.0 255.255.255.0
+ summary-address 10.0.100.0 255.255.255.0
  network 10.0.100.0 0.0.0.255 area 50
  network 10.1.101.0 0.0.0.3 area 50
  network 10.1.101.8 0.0.0.3 area 50
