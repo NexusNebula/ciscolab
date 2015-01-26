@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 06:04:00 MST Wed Jan 21 2015 by root
-! NVRAM config last updated at 06:55:58 MST Wed Jan 21 2015 by root
+! Last configuration change at 21:42:30 MST Sun Jan 25 2015 by root
+! NVRAM config last updated at 21:42:35 MST Sun Jan 25 2015 by root
 !
 version 12.3
 no service pad
@@ -31,6 +31,7 @@ ip cef
 ip domain name rd.nexusnebula.net
 !
 ip audit po max-events 100
+frame-relay switching
 !
 !
 !
@@ -64,13 +65,17 @@ interface FastEthernet0/0
  speed auto
 !
 interface Serial0/0
- ip address 10.1.101.13 255.255.255.252
+ no ip address
+ encapsulation frame-relay
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 094F471A1A0A
  ip ospf network point-to-point
  no fair-queue
  service-module t1 clock source internal
  service-module t1 timeslots 1-24
+ frame-relay interface-dlci 201
+ frame-relay intf-type dce
+ frame-relay route 200 interface Serial0/1 201
 !
 interface FastEthernet0/1
  ip address 10.1.101.1 255.255.255.252
@@ -81,11 +86,14 @@ interface FastEthernet0/1
  speed auto
 !
 interface Serial0/1
- ip address 10.1.101.9 255.255.255.252
+ no ip address
+ encapsulation frame-relay
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 030752180500
  service-module t1 clock source internal
  service-module t1 timeslots 1-24
+ frame-relay intf-type dce
+ frame-relay route 201 interface Serial0/0 200
 !
 router eigrp 50
  network 10.1.101.0 0.0.0.3
@@ -152,7 +160,7 @@ line vty 0 4
  transport output all
 line vty 5 15
 !
-ntp clock-period 17180648
+ntp clock-period 17180645
 ntp server 132.163.4.101 prefer
 !
 end

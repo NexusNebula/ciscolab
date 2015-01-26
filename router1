@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 06:31:00 MST Wed Jan 21 2015 by root
-! NVRAM config last updated at 06:56:05 MST Wed Jan 21 2015 by root
+! Last configuration change at 21:42:40 MST Sun Jan 25 2015 by root
+! NVRAM config last updated at 21:42:43 MST Sun Jan 25 2015 by root
 !
 version 12.3
 no service pad
@@ -96,12 +96,16 @@ interface FastEthernet0/0.103
 !
 interface Serial0/0
  ip address 10.1.101.10 255.255.255.252
+ encapsulation frame-relay
  ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 094F471A1A0A
  ip ospf network point-to-point
  no fair-queue
  service-module t1 timeslots 1-24
+ frame-relay map ip 10.1.101.9 201
+ frame-relay interface-dlci 200
+ frame-relay interface-dlci 201
 !
 interface FastEthernet0/1
  ip address 10.1.101.2 255.255.255.252
@@ -180,7 +184,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180800
+ntp clock-period 17180787
 ntp server 10.255.255.255 prefer
 !
 end
