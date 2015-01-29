@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 21:42:40 MST Sun Jan 25 2015 by root
-! NVRAM config last updated at 21:42:43 MST Sun Jan 25 2015 by root
+! Last configuration change at 21:11:03 MST Wed Jan 28 2015 by root
+! NVRAM config last updated at 21:11:07 MST Wed Jan 28 2015 by root
 !
 version 12.3
 no service pad
@@ -40,6 +40,7 @@ ip dhcp pool sitea-dhcp
    lease 0 6
 !
 ip audit po max-events 100
+ipv6 unicast-routing
 !
 !
 !
@@ -81,18 +82,24 @@ interface FastEthernet0/0
 interface FastEthernet0/0.100
  encapsulation dot1Q 100
  ip address 10.0.100.1 255.255.255.192
+ ipv6 address FC00::/64 eui-64
+ ipv6 enable
+ ipv6 nd prefix FC00::/64
 !
 interface FastEthernet0/0.101
  encapsulation dot1Q 101
  ip address 10.0.100.65 255.255.255.192
+ ipv6 enable
 !
 interface FastEthernet0/0.102
  encapsulation dot1Q 102
  ip address 10.0.100.129 255.255.255.192
+ ipv6 enable
 !
 interface FastEthernet0/0.103
  encapsulation dot1Q 103
  ip address 10.0.100.193 255.255.255.192
+ ipv6 enable
 !
 interface Serial0/0
  ip address 10.1.101.10 255.255.255.252
@@ -184,7 +191,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180787
+ntp clock-period 17180783
 ntp server 10.255.255.255 prefer
 !
 end
