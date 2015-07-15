@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 22:58:53 MST Wed Jan 14 2015 by root
-! NVRAM config last updated at 22:58:56 MST Wed Jan 14 2015 by root
+! Last configuration change at 22:59:11 MST Wed Jan 14 2015 by root
+! NVRAM config last updated at 22:59:14 MST Wed Jan 14 2015 by root
 !
 version 12.1
 no service pad
@@ -9,7 +9,7 @@ service timestamps debug uptime
 service timestamps log uptime
 service password-encryption
 !
-hostname switch0-lab
+hostname switch1-lab
 !
 aaa new-model
 aaa authentication login default local
@@ -17,7 +17,7 @@ aaa authorization exec default local
 aaa authorization network default local
 enable secret 5 $1$L2TN$FLvzFqao5JzvZJMG.1KS.0
 !
-username root privilege 15 secret 5 $1$T63k$r9eYQSoCV/ouwepCNdEf0/
+username root privilege 15 secret 5 $1$st8x$4BgymDmC4o/UqdNVV6hyp1
 clock timezone MST -7
 ip subnet-zero
 !
@@ -35,7 +35,6 @@ spanning-tree extend system-id
 spanning-tree uplinkfast
 spanning-tree backbonefast
 spanning-tree pathcost method long
-spanning-tree vlan 1-1000 priority 28672
 spanning-tree vlan 100-103 hello-time 10
 !
 !
@@ -43,67 +42,94 @@ spanning-tree vlan 100-103 hello-time 10
 !
 interface Port-channel1
  description lab lacp
+ switchport trunk allowed vlan 100-103
  switchport mode trunk
  flowcontrol send off
+ fair-queue
 !
 interface FastEthernet0/1
  description lab lacp
+ switchport trunk allowed vlan 100-103
  switchport mode trunk
- channel-group 1 mode active
+ channel-group 1 mode passive
  channel-protocol lacp
 !
 interface FastEthernet0/2
  description lab lacp
+ switchport trunk allowed vlan 100-103
  switchport mode trunk
- channel-group 1 mode active
+ channel-group 1 mode passive
  channel-protocol lacp
 !
 interface FastEthernet0/3
  description stp
+ switchport trunk allowed vlan 100-103
  switchport mode trunk
 !
 interface FastEthernet0/4
+ shutdown
 !
 interface FastEthernet0/5
+ shutdown
 !
 interface FastEthernet0/6
+ shutdown
 !
 interface FastEthernet0/7
+ shutdown
 !
 interface FastEthernet0/8
+ shutdown
 !
 interface FastEthernet0/9
+ shutdown
 !
 interface FastEthernet0/10
+ shutdown
 !
 interface FastEthernet0/11
+ shutdown
 !
 interface FastEthernet0/12
+ shutdown
 !
 interface FastEthernet0/13
+ shutdown
 !
 interface FastEthernet0/14
+ shutdown
 !
 interface FastEthernet0/15
+ shutdown
 !
 interface FastEthernet0/16
+ shutdown
 !
 interface FastEthernet0/17
+ shutdown
 !
 interface FastEthernet0/18
+ shutdown
 !
 interface FastEthernet0/19
+ shutdown
 !
 interface FastEthernet0/20
+ shutdown
 !
 interface FastEthernet0/21
+ shutdown
 !
 interface FastEthernet0/22
+ shutdown
 !
 interface FastEthernet0/23
+ switchport access vlan 100
+ switchport mode access
 !
 interface FastEthernet0/24
  description uplink
+ switchport access vlan 100
  switchport trunk allowed vlan 100-103
  switchport mode trunk
  spanning-tree portfast trunk
@@ -114,7 +140,7 @@ interface Vlan1
  shutdown
 !
 interface Vlan100
- ip address 10.0.100.5 255.255.255.192
+ ip address 10.0.100.6 255.255.255.192
  no ip route-cache
 !
 ip default-gateway 10.0.100.1
@@ -138,16 +164,15 @@ SYSTEM, DISCONNECT NOW.
 !
 line con 0
  timeout login response 60
- password 7 070C285F4D06
+ password 7 14141B180F0B
  logging synchronous
 line vty 0 4
  timeout login response 0
  logging synchronous
  transport input ssh
 line vty 5 15
- transport input none
 !
-ntp clock-period 17179918
+ntp clock-period 17179811
 ntp peer 10.0.100.1 prefer
 !
 end
