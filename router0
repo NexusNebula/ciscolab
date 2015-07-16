@@ -1,7 +1,7 @@
 
 !
 ! Last configuration change at 00:28:13 MST Wed Jul 15 2015 by root
-! NVRAM config last updated at 00:04:07 MST Thu Jul 16 2015 by root
+! NVRAM config last updated at 00:12:28 MST Thu Jul 16 2015 by root
 !
 version 12.3
 no service pad
@@ -9,7 +9,7 @@ service timestamps debug uptime
 service timestamps log uptime
 service password-encryption
 !
-hostname router0-lab
+hostname sgw00infprdlab.nexusnebula.net
 !
 boot-start-marker
 boot-end-marker
