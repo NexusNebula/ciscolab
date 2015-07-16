@@ -1,0 +1,196 @@
+
+!
+version 12.3
+no service pad
+service timestamps debug uptime
+service timestamps log uptime
+service password-encryption
+!
+hostname sgw01infprdlab.nexusnebula.net
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$L2TN$FLvzFqao5JzvZJMG.1KS.0
+!
+clock timezone MST -7
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local 
+aaa authorization network default local 
+aaa session-id common
+ip subnet-zero
+ip cef
+!
+!
+ip domain name rd.nexusnebula.net
+ip dhcp excluded-address 10.0.100.1 10.0.100.29
+!
+ip dhcp pool sitea-dhcp
+   network 10.0.100.0 255.255.255.192
+   default-router 10.0.100.1 
+   dns-server 8.8.8.8 8.8.4.4 
+   option 42 ip 10.0.100.1 
+   domain-name rd.nexusnebula.net
+   lease 0 6
+!
+ip audit po max-events 100
+ipv6 unicast-routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
+!
+!
+ip ssh rsa keypair-name router1-lab.rd.nexusnebula.net
+! 
+!
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+crypto isakmp key $^%%cisco address 10.1.101.6
+!
+!
+crypto ipsec transform-set aesset esp-aes esp-sha-hmac 
+!
+crypto map aesmap 10 ipsec-isakmp 
+ ! Incomplete
+ set peer 10.1.101.6
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.100
+ encapsulation dot1Q 100
+ ip address 10.0.100.1 255.255.255.192
+ ipv6 address FC00::/64 eui-64
+ ipv6 enable
+ ipv6 nd prefix FC00::/64
+!
+interface FastEthernet0/0.101
+ encapsulation dot1Q 101
+ ip address 10.0.100.65 255.255.255.192
+ ipv6 enable
+!
+interface FastEthernet0/0.102
+ encapsulation dot1Q 102
+ ip address 10.0.100.129 255.255.255.192
+ ipv6 enable
+!
+interface FastEthernet0/0.103
+ encapsulation dot1Q 103
+ ip address 10.0.100.193 255.255.255.192
+ ipv6 enable
+!
+interface Serial0/0
+ ip address 10.1.101.10 255.255.255.252
+ encapsulation frame-relay
+ ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 7 094F471A1A0A
+ ip ospf network point-to-point
+ no fair-queue
+ service-module t1 timeslots 1-24
+ frame-relay map ip 10.1.101.9 201
+ frame-relay interface-dlci 200
+ frame-relay interface-dlci 201
+!
+interface FastEthernet0/1
+ ip address 10.1.101.2 255.255.255.252
+ ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 7 14141B180F0B
+ ip ospf network point-to-point
+ duplex auto
+ speed auto
+ crypto map aesmap
+!
+router eigrp 50
+ passive-interface FastEthernet0/0
+ passive-interface FastEthernet0/0.100
+ passive-interface FastEthernet0/0.101
+ passive-interface FastEthernet0/0.102
+ passive-interface FastEthernet0/0.103
+ network 10.0.100.0 0.0.0.255
+ network 10.1.101.0 0.0.0.3
+ network 10.1.101.8 0.0.0.3
+ distance eigrp 90 100
+ no auto-summary
+!
+router ospf 1
+ log-adjacency-changes
+ area 50 authentication
+ area 50 stub
+ area 50 range 10.0.100.0 255.255.255.0
+ summary-address 10.0.100.0 255.255.255.0
+ network 10.0.100.0 0.0.0.255 area 50
+ network 10.1.101.0 0.0.0.3 area 50
+ network 10.1.101.8 0.0.0.3 area 50
+!
+no ip http server
+ip http secure-server
+ip classless
+!
+!
+!
+tftp-server nvram:startup-config
+tftp-server flash:c2600-ik9o3s3-mz.123-26.bin alias ios.bin
+tftp-server system:memory alias mem
+!
+!
+!
+!
+banner incoming * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
+THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
+USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY
+BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986
+OR OTHER APPLICABLE LAWS. IF NOT AUTHORIZED TO ACCESS THIS
+SYSTEM, DISCONNECT NOW.
+
+banner login * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
+THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
+USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY
+BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986
+OR OTHER APPLICABLE LAWS. IF NOT AUTHORIZED TO ACCESS THIS
+SYSTEM, DISCONNECT NOW.
+
+banner motd * * * * * * * * * FUCK OFF WE'RE FULL * * * * * * * * * * *
+THIS SYSTEM IS RESTRICTED TO AUTHORIZED USERS FOR AUTHORIZED
+USE ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MAY
+BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986
+OR OTHER APPLICABLE LAWS. IF NOT AUTHORIZED TO ACCESS THIS
+SYSTEM, DISCONNECT NOW.
+
+!
+line con 0
+ password 7 1511021F0725
+ logging synchronous
+line aux 0
+line vty 0 4
+ logging synchronous
+ transport preferred ssh
+ transport input ssh
+ transport output all
+line vty 5 15
+ transport input none
+!
+ntp clock-period 17180779
+ntp server 10.255.255.255 prefer
+!
+end
