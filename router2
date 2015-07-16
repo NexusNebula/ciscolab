@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 21:42:47 MST Sun Jan 25 2015 by root
-! NVRAM config last updated at 21:42:53 MST Sun Jan 25 2015 by root
+! Last configuration change at 19:05:46 MST Tue Jul 14 2015 by root
+! NVRAM config last updated at 00:03:01 MST Thu Jul 16 2015 by root
 !
 version 12.3
 no service pad
@@ -128,7 +128,6 @@ ip classless
 ip default-network 0.0.0.0
 ip route 0.0.0.0 0.0.0.0 10.1.101.253 200
 ip route 10.0.0.0 255.0.0.0 10.1.101.253
-ip route 10.0.0.0 255.0.0.0 10.1.101.254
 !
 !
 access-list 1 deny   10.255.255.255
@@ -173,7 +172,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180641
+ntp clock-period 17180640
 ntp peer 10.255.255.255 prefer
 !
 end

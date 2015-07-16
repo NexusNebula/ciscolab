@@ -150,6 +150,8 @@ ip classless
 !
 !
 tftp-server nvram:startup-config
+tftp-server flash:c2600-ik9o3s3-mz.123-26.bin alias ios.bin
+tftp-server system:memory alias mem
 !
 !
 !
