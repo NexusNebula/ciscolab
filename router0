@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 00:28:13 MST Wed Jul 15 2015 by root
-! NVRAM config last updated at 00:12:28 MST Thu Jul 16 2015 by root
+! Last configuration change at 19:45:38 MST Mon Aug 31 2015 by root
+! NVRAM config last updated at 19:45:41 MST Mon Aug 31 2015 by root
 !
 version 12.3
 no service pad
@@ -9,7 +9,7 @@ service timestamps debug uptime
 service timestamps log uptime
 service password-encryption
 !
-hostname sgw00infprdlab.nexusnebula.net
+hostname sgw00inflabhq
 !
 boot-start-marker
 boot-end-marker
@@ -28,7 +28,7 @@ ip subnet-zero
 ip cef
 !
 !
-ip domain name rd.nexusnebula.net
+ip domain name nexusnebula.net
 !
 ip audit po max-events 100
 frame-relay switching
@@ -157,11 +157,11 @@ line aux 0
 line vty 0 4
  logging synchronous
  transport preferred ssh
- transport input ssh
+ transport input all
  transport output all
 line vty 5 15
 !
-ntp clock-period 17180645
+ntp clock-period 17180642
 ntp server 132.163.4.101 prefer
 !
 end

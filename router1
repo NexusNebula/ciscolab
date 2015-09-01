@@ -1,12 +1,15 @@
 
 !
+! Last configuration change at 19:46:30 MST Mon Aug 31 2015 by root
+! NVRAM config last updated at 19:46:36 MST Mon Aug 31 2015 by root
+!
 version 12.3
 no service pad
 service timestamps debug uptime
 service timestamps log uptime
 service password-encryption
 !
-hostname sgw01infprdlab.nexusnebula.net
+hostname sgw01inflabhq
 !
 boot-start-marker
 boot-end-marker
@@ -25,7 +28,7 @@ ip subnet-zero
 ip cef
 !
 !
-ip domain name rd.nexusnebula.net
+ip domain name nexusnebula.net
 ip dhcp excluded-address 10.0.100.1 10.0.100.29
 !
 ip dhcp pool sitea-dhcp
@@ -185,12 +188,12 @@ line aux 0
 line vty 0 4
  logging synchronous
  transport preferred ssh
- transport input ssh
+ transport input all
  transport output all
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180779
+ntp clock-period 17180771
 ntp server 10.255.255.255 prefer
 !
 end
