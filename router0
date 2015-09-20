@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 21:36:22 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 23:27:24 MST Sat Sep 19 2015 by root
+! Last configuration change at 23:28:22 MST Sat Sep 19 2015 by root
+! NVRAM config last updated at 11:54:07 MST Sun Sep 20 2015 by cisco
 !
 version 12.3
 no service pad
@@ -44,7 +44,7 @@ frame-relay switching
 !
 !
 !
-username cisco privilege 15 secret 5 $1$y/9E$P8qS1fwG0.grQYtGt6qR61
+username admin privilege 15 secret 5 $1$vRDz$R1S/jPlKDrALkM2iwUm2O1
 !
 !
 ip ssh rsa keypair-name sgw00inflabhq.nexusnebula.net
@@ -57,6 +57,7 @@ interface Loopback0
  ip address 10.255.255.255 255.255.255.255
 !
 interface FastEthernet0/0
+ ip address 10.0.25.5 255.255.255.252 secondary
  ip address 10.1.101.5 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 0822455D0A16
@@ -78,6 +79,7 @@ interface Serial0/0
  frame-relay route 200 interface Serial0/1 201
 !
 interface FastEthernet0/1
+ ip address 10.0.25.1 255.255.255.252 secondary
  ip address 10.1.101.1 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 00071A150754
@@ -96,6 +98,10 @@ interface Serial0/1
  frame-relay route 201 interface Serial0/0 200
 !
 router eigrp 50
+ network 10.0.25.0 0.0.0.3
+ network 10.0.25.4 0.0.0.3
+ network 10.0.25.8 0.0.0.3
+ network 10.0.25.12 0.0.0.3
  network 10.1.101.0 0.0.0.3
  network 10.1.101.4 0.0.0.3
  network 10.1.101.8 0.0.0.3
@@ -110,6 +116,10 @@ router ospf 1
  log-adjacency-changes
  area 50 authentication
  area 50 stub
+ network 10.0.25.0 0.0.0.3 area 50
+ network 10.0.25.4 0.0.0.3 area 50
+ network 10.0.25.8 0.0.0.3 area 50
+ network 10.0.25.12 0.0.0.3 area 50
  network 10.1.101.0 0.0.0.3 area 50
  network 10.1.101.4 0.0.0.3 area 50
  network 10.1.101.8 0.0.0.3 area 50
