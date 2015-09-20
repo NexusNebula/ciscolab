@@ -1,7 +1,7 @@
 
 !
 ! Last configuration change at 23:41:21 MST Sat Sep 19 2015 by cisco
-! NVRAM config last updated at 23:41:24 MST Sat Sep 19 2015 by cisco
+! NVRAM config last updated at 10:58:15 MST Sun Sep 20 2015 by cisco
 !
 version 12.3
 no service pad
@@ -66,6 +66,7 @@ crypto map aesmap 10 ipsec-isakmp
 !
 !
 interface FastEthernet0/0
+ ip address 10.0.25.6 255.255.255.252 secondary
  ip address 10.1.101.6 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 00071A150754
@@ -75,6 +76,7 @@ interface FastEthernet0/0
  crypto map aesmap
 !
 interface Serial0/0
+ ip address 10.0.25.9 255.255.255.252 secondary
  ip address 10.1.101.9 255.255.255.252
  encapsulation frame-relay
  ip ospf authentication message-digest
@@ -86,6 +88,7 @@ interface Serial0/0
  frame-relay interface-dlci 201
 !
 interface FastEthernet0/1
+ ip address 10.0.25.125 255.255.255.252 secondary
  ip address 10.1.101.254 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 121A0C041104
@@ -97,6 +100,8 @@ router eigrp 50
  redistribute static
  redistribute eigrp 1
  passive-interface FastEthernet0/1
+ network 10.0.25.4 0.0.0.3
+ network 10.0.25.12 0.0.0.3
  network 10.1.101.4 0.0.0.3
  network 10.1.101.12 0.0.0.3
  network 0.0.0.0
@@ -108,6 +113,7 @@ router eigrp 1
  redistribute eigrp 50
  passive-interface FastEthernet0/0
  passive-interface Serial0/0
+ network 10.0.25.124 0.0.0.3
  network 10.1.101.252 0.0.0.3
  no auto-summary
 !
