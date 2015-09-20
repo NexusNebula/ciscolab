@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 19:46:30 MST Mon Aug 31 2015 by root
-! NVRAM config last updated at 19:46:36 MST Mon Aug 31 2015 by root
+! Last configuration change at 21:38:59 MST Sat Sep 19 2015 by root
+! NVRAM config last updated at 22:43:30 MST Sat Sep 19 2015 by root
 !
 version 12.3
 no service pad
@@ -56,7 +56,7 @@ ipv6 unicast-routing
 username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
 !
 !
-ip ssh rsa keypair-name router1-lab.rd.nexusnebula.net
+ip ssh rsa keypair-name sgw01inflabhq.nexusnebula.net
 ! 
 !
 crypto isakmp policy 10
@@ -193,7 +193,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180771
+ntp clock-period 17180769
 ntp server 10.255.255.255 prefer
 !
 end
