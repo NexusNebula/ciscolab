@@ -1,7 +1,7 @@
 
 !
 ! Last configuration change at 11:05:49 MST Sun Sep 20 2015 by cisco
-! NVRAM config last updated at 11:05:52 MST Sun Sep 20 2015 by cisco
+! NVRAM config last updated at 13:31:52 MST Sun Sep 20 2015 by cisco
 !
 version 12.3
 no service pad
@@ -44,6 +44,7 @@ ip audit po max-events 100
 !
 !
 username cisco privilege 15 secret 5 $1$dVzv$vLkHDO4Vt3kuMgLnTUkEK0
+username admin privilege 15 secret 5 $1$a9H3$MGmVrm71MNC7/UBkZdwA31
 !
 !
 ip ssh rsa keypair-name sgw02inflabhq.nexusnebula.net
@@ -70,7 +71,6 @@ interface FastEthernet0/0
  ip address 10.1.101.6 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 00071A150754
- ip ospf network point-to-point
  duplex auto
  speed auto
  crypto map aesmap

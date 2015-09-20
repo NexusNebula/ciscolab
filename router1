@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 23:22:50 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 23:23:12 MST Sat Sep 19 2015 by root
+! Last configuration change at 13:28:44 MST Sun Sep 20 2015 by cisco
+! NVRAM config last updated at 13:29:01 MST Sun Sep 20 2015 by cisco
 !
 version 12.3
 no service pad
@@ -29,14 +29,14 @@ ip cef
 !
 !
 ip domain name nexusnebula.net
-ip dhcp excluded-address 10.0.100.1 10.0.100.29
+ip dhcp excluded-address 10.0.25.129 10.0.25.139
 !
 ip dhcp pool sitea-dhcp
-   network 10.0.100.0 255.255.255.192
-   default-router 10.0.100.1 
+   network 10.0.25.128 255.255.255.224
+   default-router 10.0.25.129 
    dns-server 8.8.8.8 8.8.4.4 
-   option 42 ip 10.0.100.1 
-   domain-name rd.nexusnebula.net
+   option 42 ip 10.0.25.129 
+   domain-name nexusnebula.net
    lease 0 6
 !
 ip audit po max-events 100
@@ -53,7 +53,7 @@ ipv6 unicast-routing
 !
 !
 !
-username cisco privilege 15 secret 5 $1$dBsb$nv.nKKy6.kyEDBRX5Pd3P0
+username admin privilege 15 secret 5 $1$PStF$67FwyVH0rZAWkoAND94at/
 !
 !
 ip ssh rsa keypair-name sgw01inflabhq.nexusnebula.net
@@ -81,6 +81,7 @@ interface FastEthernet0/0
 !
 interface FastEthernet0/0.100
  encapsulation dot1Q 100
+ ip address 10.0.25.129 255.255.255.224 secondary
  ip address 10.0.100.1 255.255.255.192
  ipv6 address FC00::/64 eui-64
  ipv6 enable
@@ -88,23 +89,28 @@ interface FastEthernet0/0.100
 !
 interface FastEthernet0/0.101
  encapsulation dot1Q 101
+ ip address 10.0.25.161 255.255.255.224 secondary
  ip address 10.0.100.65 255.255.255.192
  ipv6 enable
 !
 interface FastEthernet0/0.102
  encapsulation dot1Q 102
+ ip address 10.0.25.193 255.255.255.224 secondary
  ip address 10.0.100.129 255.255.255.192
  ipv6 enable
 !
 interface FastEthernet0/0.103
  encapsulation dot1Q 103
+ ip address 10.0.25.125 255.255.255.224 secondary
  ip address 10.0.100.193 255.255.255.192
  ipv6 enable
 !
 interface Serial0/0
+ ip address 10.0.25.9 255.255.255.252 secondary
  ip address 10.1.101.10 255.255.255.252
  encapsulation frame-relay
  ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
+ ip summary-address eigrp 50 10.0.25.128 255.255.255.128 5
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 094F471A1A0A
  ip ospf network point-to-point
@@ -115,11 +121,12 @@ interface Serial0/0
  frame-relay interface-dlci 201
 !
 interface FastEthernet0/1
+ ip address 10.0.25.2 255.255.255.252 secondary
  ip address 10.1.101.2 255.255.255.252
  ip summary-address eigrp 50 10.0.100.0 255.255.255.0 5
+ ip summary-address eigrp 50 10.0.25.128 255.255.255.128 5
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 14141B180F0B
- ip ospf network point-to-point
  duplex auto
  speed auto
  crypto map aesmap
@@ -130,6 +137,9 @@ router eigrp 50
  passive-interface FastEthernet0/0.101
  passive-interface FastEthernet0/0.102
  passive-interface FastEthernet0/0.103
+ network 10.0.25.0 0.0.0.3
+ network 10.0.25.8 0.0.0.3
+ network 10.0.25.128 0.0.0.127
  network 10.0.100.0 0.0.0.255
  network 10.1.101.0 0.0.0.3
  network 10.1.101.8 0.0.0.3
@@ -140,8 +150,13 @@ router ospf 1
  log-adjacency-changes
  area 50 authentication
  area 50 stub
+ area 50 range 10.0.25.128 255.255.255.128
  area 50 range 10.0.100.0 255.255.255.0
  summary-address 10.0.100.0 255.255.255.0
+ summary-address 10.0.25.128 255.255.255.128
+ network 10.0.25.0 0.0.0.3 area 50
+ network 10.0.25.8 0.0.0.3 area 50
+ network 10.0.25.128 0.0.0.127 area 50
  network 10.0.100.0 0.0.0.255 area 50
  network 10.1.101.0 0.0.0.3 area 50
  network 10.1.101.8 0.0.0.3 area 50
