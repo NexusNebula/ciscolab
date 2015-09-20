@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 23:45:31 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 23:45:34 MST Sat Sep 19 2015 by root
+! Last configuration change at 00:12:11 MST Sun Sep 20 2015 by cisco
+! NVRAM config last updated at 00:12:18 MST Sun Sep 20 2015 by cisco
 !
 version 12.1
 no service pad
@@ -9,7 +9,7 @@ service timestamps debug uptime
 service timestamps log uptime
 service password-encryption
 !
-hostname switch1-lab
+hostname asw01inflabhq
 !
 aaa new-model
 aaa authentication login default local
@@ -21,7 +21,7 @@ username cisco privilege 15 secret 5 $1$rBtN$AKa97x7WjvlX5BirV.nCS.
 clock timezone MST -7
 ip subnet-zero
 !
-ip domain-name rd.nexusnebula.net
+ip domain-name nexusnebula.net
 ip ssh time-out 120
 ip ssh authentication-retries 3
 !
@@ -168,7 +168,7 @@ line con 0
  logging synchronous
 line vty 0 4
  exec-timeout 0 0
- timeout login response 0
+ timeout login response 60
  logging synchronous
 line vty 5 15
 !

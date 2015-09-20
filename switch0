@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 23:57:11 MST Sat Sep 19 2015 by cisco
-! NVRAM config last updated at 23:57:17 MST Sat Sep 19 2015 by cisco
+! Last configuration change at 00:13:07 MST Sun Sep 20 2015 by cisco
+! NVRAM config last updated at 00:13:11 MST Sun Sep 20 2015 by cisco
 !
 version 12.1
 no service pad
@@ -17,7 +17,6 @@ aaa authorization exec default local
 aaa authorization network default local
 enable secret 5 $1$L2TN$FLvzFqao5JzvZJMG.1KS.0
 !
-username root privilege 15 secret 5 $1$T63k$r9eYQSoCV/ouwepCNdEf0/
 username cisco privilege 15 secret 5 $1$YohX$xlwHPB1UY7x1Ew0slyZiC1
 clock timezone MST -7
 ip subnet-zero
