@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 21:38:59 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 22:43:30 MST Sat Sep 19 2015 by root
+! Last configuration change at 23:22:50 MST Sat Sep 19 2015 by root
+! NVRAM config last updated at 23:23:12 MST Sat Sep 19 2015 by root
 !
 version 12.3
 no service pad
@@ -53,7 +53,7 @@ ipv6 unicast-routing
 !
 !
 !
-username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
+username cisco privilege 15 secret 5 $1$dBsb$nv.nKKy6.kyEDBRX5Pd3P0
 !
 !
 ip ssh rsa keypair-name sgw01inflabhq.nexusnebula.net
@@ -186,6 +186,7 @@ line con 0
  logging synchronous
 line aux 0
 line vty 0 4
+ exec-timeout 0 0
  logging synchronous
  transport preferred ssh
  transport input all

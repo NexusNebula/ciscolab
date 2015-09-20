@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 21:36:13 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 22:41:25 MST Sat Sep 19 2015 by root
+! Last configuration change at 23:41:21 MST Sat Sep 19 2015 by cisco
+! NVRAM config last updated at 23:41:24 MST Sat Sep 19 2015 by cisco
 !
 version 12.3
 no service pad
@@ -43,7 +43,7 @@ ip audit po max-events 100
 !
 !
 !
-username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
+username cisco privilege 15 secret 5 $1$dVzv$vLkHDO4Vt3kuMgLnTUkEK0
 !
 !
 ip ssh rsa keypair-name sgw02inflabhq.nexusnebula.net
@@ -165,6 +165,7 @@ line con 0
  logging synchronous
 line aux 0
 line vty 0 4
+ exec-timeout 0 0
  logging synchronous
  transport preferred ssh
  transport input all

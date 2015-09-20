@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 22:59:11 MST Wed Jan 14 2015 by root
-! NVRAM config last updated at 22:59:14 MST Wed Jan 14 2015 by root
+! Last configuration change at 23:45:31 MST Sat Sep 19 2015 by root
+! NVRAM config last updated at 23:45:34 MST Sat Sep 19 2015 by root
 !
 version 12.1
 no service pad
@@ -17,7 +17,7 @@ aaa authorization exec default local
 aaa authorization network default local
 enable secret 5 $1$L2TN$FLvzFqao5JzvZJMG.1KS.0
 !
-username root privilege 15 secret 5 $1$st8x$4BgymDmC4o/UqdNVV6hyp1
+username cisco privilege 15 secret 5 $1$rBtN$AKa97x7WjvlX5BirV.nCS.
 clock timezone MST -7
 ip subnet-zero
 !
@@ -167,12 +167,12 @@ line con 0
  password 7 14141B180F0B
  logging synchronous
 line vty 0 4
+ exec-timeout 0 0
  timeout login response 0
  logging synchronous
- transport input ssh
 line vty 5 15
 !
-ntp clock-period 17179811
+ntp clock-period 17179808
 ntp peer 10.0.100.1 prefer
 !
 end
