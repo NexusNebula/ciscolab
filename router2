@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 19:47:08 MST Mon Aug 31 2015 by root
-! NVRAM config last updated at 19:47:16 MST Mon Aug 31 2015 by root
+! Last configuration change at 12:09:29 MST Mon Sep 7 2015 by root
+! NVRAM config last updated at 21:26:02 MST Sat Sep 19 2015 by root
 !
 version 12.3
 no service pad
@@ -46,7 +46,7 @@ ip audit po max-events 100
 username root privilege 15 secret 5 $1$JTZ1$2VC2O0ksrL7dHID1pisc91
 !
 !
-ip ssh rsa keypair-name router2-lab.rd.nexusnebula.net
+ip ssh rsa keypair-name sgw02inflabhq.nexusnebula.net
 ! 
 !
 crypto isakmp policy 10
@@ -172,7 +172,7 @@ line vty 0 4
 line vty 5 15
  transport input none
 !
-ntp clock-period 17180638
+ntp clock-period 17180628
 ntp peer 10.255.255.255 prefer
 !
 end
