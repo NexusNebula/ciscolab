@@ -1,7 +1,7 @@
 
 !
 ! Last configuration change at 23:28:22 MST Sat Sep 19 2015 by root
-! NVRAM config last updated at 11:54:07 MST Sun Sep 20 2015 by cisco
+! NVRAM config last updated at 12:03:50 MST Sun Sep 20 2015 by cisco
 !
 version 12.3
 no service pad
@@ -61,7 +61,6 @@ interface FastEthernet0/0
  ip address 10.1.101.5 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 0822455D0A16
- ip ospf network point-to-point
  duplex auto
  speed auto
 !
@@ -83,7 +82,6 @@ interface FastEthernet0/1
  ip address 10.1.101.1 255.255.255.252
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 7 00071A150754
- ip ospf network point-to-point
  duplex auto
  speed auto
 !
