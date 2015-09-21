@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 13:28:44 MST Sun Sep 20 2015 by cisco
-! NVRAM config last updated at 13:29:01 MST Sun Sep 20 2015 by cisco
+! Last configuration change at 17:28:18 MST Sun Sep 20 2015 by admin
+! NVRAM config last updated at 17:28:21 MST Sun Sep 20 2015 by admin
 !
 version 12.3
 no service pad
@@ -54,6 +54,7 @@ ipv6 unicast-routing
 !
 !
 username admin privilege 15 secret 5 $1$PStF$67FwyVH0rZAWkoAND94at/
+username cisco privilege 15 secret 5 $1$3yCH$38NKQnlvBGC0BiPxKkFZW1
 !
 !
 ip ssh rsa keypair-name sgw01inflabhq.nexusnebula.net
@@ -89,20 +90,17 @@ interface FastEthernet0/0.100
 !
 interface FastEthernet0/0.101
  encapsulation dot1Q 101
- ip address 10.0.25.161 255.255.255.224 secondary
- ip address 10.0.100.65 255.255.255.192
+ ip address 10.0.25.161 255.255.255.224
  ipv6 enable
 !
 interface FastEthernet0/0.102
  encapsulation dot1Q 102
- ip address 10.0.25.193 255.255.255.224 secondary
- ip address 10.0.100.129 255.255.255.192
+ ip address 10.0.25.193 255.255.255.224
  ipv6 enable
 !
 interface FastEthernet0/0.103
  encapsulation dot1Q 103
- ip address 10.0.25.125 255.255.255.224 secondary
- ip address 10.0.100.193 255.255.255.192
+ ip address 10.0.25.125 255.255.255.224
  ipv6 enable
 !
 interface Serial0/0
